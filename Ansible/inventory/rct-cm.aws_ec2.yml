@@ -1,0 +1,10 @@
+plugin: amazon.aws.aws_ec2
+# The values for profile, access key, secret key and token can be hardcoded like:
+profile: default
+cache: true
+regions:
+  - us-west-2
+filters:
+  tag:Environment:
+    - dev
+    - prod
