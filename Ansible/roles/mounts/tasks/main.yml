@@ -1,0 +1,16 @@
+---
+- name: Create mount points for nfs exports
+  ansible.builtin.file:
+    path: "{{ item.value }}"
+    owner: ec2-user
+    group: root
+    mode: "0775"
+  loop: "{{ mounts_mountpoints | dict2items }}"
+- name: Mount nfs exports
+  ansible.posix.mount:
+    src: "{{ mounts_storage }}:{{ item.value }}"
+    path: "{{ mounts_storage }}:{{ item.value }}"
+    boot: true
+    state: mounted
+    fstype: nfs
+  loop: "{{ mounts_exports | dict2items }}"
