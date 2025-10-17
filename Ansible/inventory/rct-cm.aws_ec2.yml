@@ -1,5 +1,5 @@
 plugin: amazon.aws.aws_ec2
-#profile: default #uncomment if running on laptop with the name of aws profile -- ec2 instances don't need this
+#profile: default # uncomment if running on laptop with the name of aws profile -- ec2 instances don't need this
 cache: true
 regions:
   - us-west-2
@@ -7,3 +7,6 @@ filters:
   tag:Environment:
     - dev
     - prod
+compose:
+  ansible_host: private_ip_address
+  ansible_user: ec2-user
