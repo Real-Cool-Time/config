@@ -3,9 +3,12 @@ plugin: amazon.aws.aws_ec2
 cache: true
 regions:
   - us-west-2
-filters:
-  tag:Environment:
-    - dev
-    - prod
+include_filters:
+  - tag:Environment:
+      - dev
+      - prod
+exclude_filters:
+  - tag:Name:
+      - "rct-cm-ansible" # exclude self!
 compose:
   ansible_host: private_ip_address
