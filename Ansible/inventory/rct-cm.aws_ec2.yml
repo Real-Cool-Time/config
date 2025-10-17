@@ -1,6 +1,5 @@
 plugin: amazon.aws.aws_ec2
-# The values for profile, access key, secret key and token can be hardcoded like:
-profile: default
+#profile: default #uncomment if running on laptop with the name of aws profile -- ec2 instances don't need this
 cache: true
 regions:
   - us-west-2
