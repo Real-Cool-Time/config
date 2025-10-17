@@ -9,4 +9,3 @@ filters:
     - prod
 compose:
   ansible_host: private_ip_address
-  ansible_user: ec2-user
