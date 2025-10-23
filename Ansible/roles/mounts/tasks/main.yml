@@ -2,6 +2,7 @@
 - name: Create mount points for nfs exports
   ansible.builtin.file:
     path: "{{ item.value }}"
+    state: directory
     owner: ec2-user
     group: root
     mode: "0775"
