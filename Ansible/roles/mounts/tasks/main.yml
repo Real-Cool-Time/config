@@ -5,7 +5,7 @@
     owner: ec2-user
     group: root
     mode: "0775"
-  loop: "{{ mounts_mountpoints | dict2items }}"
+  loop: "{{ mounts_exports | dict2items }}"
 - name: Mount nfs exports
   ansible.posix.mount:
     src: "{{ mounts_storage }}:{{ item.value }}"
