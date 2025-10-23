@@ -14,7 +14,7 @@
 - name: Mount nfs exports
   ansible.posix.mount:
     src: "{{ mounts_storage }}:{{ item.key }}"
-    path: "{{ mounts_storage }}:{{ item.value }}"
+    path: "{{ item.value }}"
     boot: true
     state: mounted
     fstype: nfs
