@@ -1,4 +1,8 @@
 ---
+- name: Install necessary packages
+  ansible.builtin.dnf:
+    name: "{{ item }}"
+  loop: "{{ mounts_packages }}"
 - name: Create mount points for nfs exports
   ansible.builtin.file:
     path: "{{ item.value }}"

@@ -1,4 +1,6 @@
 ---
+mounts_packages:
+  - nfs-utils
 mounts_storage: "usw2-qumulo.realcooltime.local"
 mounts_exports:
   { "/production/jobs": "/jobs", "/production/software": "/software" }
