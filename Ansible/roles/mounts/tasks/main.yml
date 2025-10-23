@@ -13,7 +13,7 @@
   loop: "{{ mounts_exports | dict2items }}"
 - name: Mount nfs exports
   ansible.posix.mount:
-    src: "{{ mounts_storage }}:{{ item.value }}"
+    src: "{{ mounts_storage }}:{{ item.key }}"
     path: "{{ mounts_storage }}:{{ item.value }}"
     boot: true
     state: mounted
