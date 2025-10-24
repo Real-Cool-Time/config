@@ -1,0 +1,8 @@
+---
+- name: Install Mediashuttle Cleanup
+  hosts: ip-10-11-13-159.us-west-2.compute.internal # cleanup machine
+  become: true
+
+  roles:
+    - role: mounts
+    - role: mediashuttle_cleanup
