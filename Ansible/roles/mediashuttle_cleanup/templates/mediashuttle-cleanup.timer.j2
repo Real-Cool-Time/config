@@ -1,0 +1,10 @@
+[Unit]
+Description=find and remove files in mediashuttle directory older than {{ mediashuttle_cleanup_days }} days
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=360
+
+[Install]
+WantedBy=timers.target

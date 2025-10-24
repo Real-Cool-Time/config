@@ -15,7 +15,6 @@
     owner: ec2-user
     group: ec2-user
     mode: "0770"
-  notify: "Restart mediashuttle-cleanup"
 
 - name: Install mediashuttle-cleanup systemd service
   ansible.builtin.template:
@@ -24,10 +23,17 @@
     owner: root
     group: root
     mode: "0644"
-  notify: "Restart mediashuttle-cleanup"
+
+- name: Install mediashuttle-cleanup systemd timer
+  ansible.builtin.template:
+    src: mediashuttle-cleanup.timer.j2
+    dest: /etc/systemd/system/mediashuttle-cleanup.timer
+    owner: root
+    group: root
+    mode: "0644"
 
 - name: Enable mediashuttle-cleanup systemd service
   ansible.builtin.systemd_service:
-    name: mediashuttle-cleanup
+    name: mediashuttle-cleanup.timer
     enabled: true
     state: started
