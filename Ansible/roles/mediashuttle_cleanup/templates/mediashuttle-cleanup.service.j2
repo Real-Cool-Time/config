@@ -1,0 +1,8 @@
+[Unit]
+Description=find and remove files in mediashuttle directory older than {{ mediashuttle_cleanup_days }} days
+Wants=mnt-mediashuttle.mount network-online.target
+After=mnt-mediashuttle.mount network-online.target
+
+[Service]
+Type=oneshot
+ExecStart={{ mediashuttle_cleanup_script }}
