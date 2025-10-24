@@ -1,4 +1,13 @@
 ---
+
+- name: Make log file dir
+  ansible.builtin.file:
+    name: /var/log/cleanup
+    state: directory
+    owner: ec2-user
+    group: ec2-user
+    mode: "0775"
+
 - name: Copy mediashuttle-cleanup bash script
   ansible.builtin.template:
     src: mediashuttle-cleanup.sh.j2

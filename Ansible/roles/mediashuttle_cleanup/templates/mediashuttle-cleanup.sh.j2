@@ -11,6 +11,10 @@ email_report() {
   fi
 }
 
+make_log_file() {
+  touch "$LOG_FILE"
+}
+
 if [[ -d $MEDIASHUTTLE_DIR ]]; then
   find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$CLEANUP_DAYS" -exec echo "deleting file {}" \; >>"$LOG_FILE"
   find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$WARNING_DAYS" -exec echo "[WARNING] file {} will be removed in $WARNING_DAYS" \; >>"$LOG_FILE"
