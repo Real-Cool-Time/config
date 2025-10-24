@@ -2,16 +2,16 @@
 - name: Copy mediashuttle-cleanup bash script
   ansible.builtin.template:
     src: mediashuttle-cleanup.sh.j2
-    dest: /usr/local/bin
+    dest: /usr/local/bin/mediashuttle-cleanup.sh
     owner: ec2-user
-    group: root
+    group: ec2-user
     mode: "0770"
   notify: "Restart mediashuttle-cleanup"
 
 - name: Install mediashuttle-cleanup systemd service
   ansible.builtin.template:
     src: mediashuttle-cleanup.service.j2
-    dest: /etc/systemd/system
+    dest: /etc/systemd/system/mediashuttle-cleanup.service
     owner: root
     group: root
     mode: "0644"
