@@ -32,7 +32,7 @@
     group: root
     mode: "0644"
 
-- name: Enable mediashuttle-cleanup systemd service
+- name: Enable mediashuttle-cleanup systemd timer
   ansible.builtin.systemd_service:
     name: mediashuttle-cleanup.timer
     enabled: true

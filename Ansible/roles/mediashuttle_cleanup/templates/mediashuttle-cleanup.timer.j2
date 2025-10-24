@@ -2,7 +2,7 @@
 Description=find and remove files in mediashuttle directory older than {{ mediashuttle_cleanup_days }} days
 
 [Timer]
-OnCalendar=daily
+OnCalendar=*-*-* 02:00:00 America/Los_Angeles
 Persistent=true
 RandomizedDelaySec=360
 
