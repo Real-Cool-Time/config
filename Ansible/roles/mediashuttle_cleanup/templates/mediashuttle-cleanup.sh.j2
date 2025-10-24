@@ -6,19 +6,20 @@ CLEANUP_DAYS="{{ mediashuttle_cleanup_days }}"
 WARNING_DAYS="{{ mediashuttle_cleanup_warning_days }}"
 
 email_report() {
-  if [[ -f $LOG_FILE ]]; then
-    return 0
-  fi
+	if [[ -f $LOG_FILE ]]; then
+		return 0
+	fi
 }
 
 make_log_file() {
-  touch "$LOG_FILE"
+	touch "$LOG_FILE"
 }
 
 if [[ -d $MEDIASHUTTLE_DIR ]]; then
-  find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$CLEANUP_DAYS" -exec echo "deleting file {}" \; >>"$LOG_FILE"
-  find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$WARNING_DAYS" -exec echo "[WARNING] file {} will be removed in $WARNING_DAYS" \; >>"$LOG_FILE"
+	make_log_file()
+	find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$CLEANUP_DAYS" -exec echo "deleting file {}" \; >>"$LOG_FILE"
+	find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$WARNING_DAYS" -exec echo "[WARNING] file {} will be removed in $WARNING_DAYS" \; >>"$LOG_FILE"
 else
-  echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
-  exit 1
+	echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
+	exit 1
 fi
