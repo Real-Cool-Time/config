@@ -1,4 +1,5 @@
 mediashuttle_cleanup_dir: "/mnt/mediashuttle"
+mediashuttle_cleanup_log_dir: "/var/log/cleanup"
 mediashuttle_cleanup_log: "/var/log/cleanup/mediashuttle-cleanup"
 mediashuttle_cleanup_days: "30"
 mediashuttle_cleanup_warning_days: "14"
