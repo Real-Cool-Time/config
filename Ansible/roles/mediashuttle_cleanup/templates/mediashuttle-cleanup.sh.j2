@@ -18,8 +18,8 @@ email_report() {
 
 if [[ -d $mediashuttle_dir ]]; then
     find "$mediashuttle_dir" -depth -type f -atime +"$cleanup_days" -fprint "$log_file"_"$date_format".log
-    echo "[WARNING]: the following will be removed in $warning_days" days: >>"$log_file"_"$date_format".log
-    find "$mediashuttle_dir" -depth -type f -atime +"$warning_days" -fprint "$log_file"_"$date_format".log
+    echo "[WARNING]: the following will be removed in $warning_days" days: >>"$log_file"_"$date_format"_delete_in_"$warning_days"_days.log
+    find "$mediashuttle_dir" -depth -type f -atime +"$warning_days" -fprint "$log_file"_"$date_format"_delete_in_"$warning_days"_days.log
 else
     echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
     exit 1
