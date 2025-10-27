@@ -1,0 +1,5 @@
+---
+- name: Install ClamAV
+  ansible.builtin.dnf:
+    name: clamav
+    state: present
