@@ -1,5 +1,5 @@
 mediashuttle_cleanup_dir: "/mnt/mediashuttle"
 mediashuttle_cleanup_log: "/var/log/cleanup/mediashuttle-cleanup"
 mediashuttle_cleanup_days: "30"
-mediashuttle_cleanup_warning_days: "16"
+mediashuttle_cleanup_warning_days: "14"
 mediashuttle_cleanup_script: "/usr/local/bin/mediashuttle-cleanup.sh"
