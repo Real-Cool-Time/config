@@ -1,6 +1,6 @@
 ---
-- name: Restart mediashuttle-cleanup
+- name: Restart mediashuttle-cleanup timer
   ansible.builtin.systemd_service:
-    name: mediashuttle-cleanup
-    state: restarted
+    name: mediashuttle-cleanup.timer
+    state: started
     daemon_reload: true

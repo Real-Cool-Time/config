@@ -1,21 +1,34 @@
 #!/usr/bin/env bash
+set -o nounset  # unset variables/parameters are errors
+set -o errexit  # exit if pipe returns non-zero
+set -o pipefail # if any part of pipe fails, fail pipe
+IFS=$'\n\t'     # only split string on newline or tab
 
-MEDIASHUTTLE_DIR="{{ mediashuttle_cleanup_dir }}"
-LOG_FILE="{{ mediashuttle_cleanup_log }}"
-CLEANUP_DAYS="{{ mediashuttle_cleanup_days }}"
-WARNING_DAYS="{{ mediashuttle_cleanup_warning_days }}"
+mediashuttle_dir="{{ mediashuttle_cleanup_dir }}"
+log_file="{{ mediashuttle_cleanup_log }}"
+cleanup_days="{{ mediashuttle_cleanup_days }}"
+warning_days="{{ mediashuttle_cleanup_warning_days }}"
+date_format="[%Y-%m-%d %H:%M:%S%z (%Z)]" # formatted date, using -u for utc
 
 email_report() {
-	if [[ -f $LOG_FILE ]]; then
-		return 0
-	fi
+    if [[ -f $log_file ]]; then
+        return 0
+    fi
 }
 
-if [[ -d $MEDIASHUTTLE_DIR ]]; then
-   	touch "$LOG_FILE"
-	find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$CLEANUP_DAYS" -exec echo "deleting file {}" \; >>"$LOG_FILE"
-	find "$MEDIASHUTTLE_DIR" -print -type f -atime +"$WARNING_DAYS" -exec echo "[WARNING] file {} will be removed in $WARNING_DAYS" \; >>"$LOG_FILE"
+if [[ -d $mediashuttle_dir ]]; then
+    touch "$log_file"
+    {
+        date -u "+$date_format"
+        find "$mediashuttle_dir" -print -type f -atime +"$cleanup_days"
+    } >>"$log_file" 2>&1
+    {
+        date -u "+$date_format"
+        echo "[WARNING]: the following will be removed in $warning_days days:"
+        find "$mediashuttle_dir" -print -type f -atime +"$warning_days"
+        echo "[END]"
+    } >>"$log_file" 2>&1
 else
-	echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
-	exit 1
+    echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
+    exit 1
 fi
