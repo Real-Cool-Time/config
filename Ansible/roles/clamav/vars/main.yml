@@ -1,0 +1,4 @@
+---
+clamav_packages:
+  - clamav
+  - clamd
