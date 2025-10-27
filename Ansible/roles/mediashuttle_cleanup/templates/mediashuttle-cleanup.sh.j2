@@ -8,8 +8,8 @@ mediashuttle_dir="{{ mediashuttle_cleanup_dir }}"
 log_file="{{ mediashuttle_cleanup_log }}"
 cleanup_days="{{ mediashuttle_cleanup_days }}"
 warning_days="{{ mediashuttle_cleanup_warning_days }}"
-find_warning_days=$((cleanup_days - warning_days))
-date_format=$(date -u "+%Y_%m_%d") # formatted date, using -u for utc
+find_warning_days=$((cleanup_days - warning_days)) # the access time in days for files to be delete in WARNING_DAYS
+date_format=$(date -u "+%Y_%m_%d")                 # formatted date, using -u for utc
 
 email_report() {
     if [[ -f $log_file ]]; then
@@ -18,8 +18,7 @@ email_report() {
 }
 
 if [[ -d $mediashuttle_dir ]]; then
-    find "$mediashuttle_dir" -depth -type f -atime +"$cleanup_days" -fprint "$log_file"_"$date_format".log
-    echo "$find_warning_days"
+    find "$mediashuttle_dir" -depth -type f -atime +"$cleanup_days" -fprint "$log_file"_"$date_format".log -delete
     find "$mediashuttle_dir" -depth -type f -atime +"$find_warning_days" -fprint "$log_file"_"$date_format"_delete_in_"$warning_days"_days.log
 else
     echo >&2 "[ERROR] MEDIA SHUTTLE DIRECTORY NOT FOUND"
