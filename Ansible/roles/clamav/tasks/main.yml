@@ -21,7 +21,7 @@
 - name: Copy mediashuttle clamav config
   ansible.builtin.template:
     src: mediashuttle.conf.j2
-    dest: /etc/clam.d/mediashuttle.conf
+    dest: /etc/clamd.d/mediashuttle.conf
     owner: root
     group: root
     mode: "0644"
