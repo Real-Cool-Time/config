@@ -2,3 +2,7 @@
 clamav_packages:
   - clamav
   - clamd
+clamav_selinux_bool:
+  - clamscan_can_scan_system
+  - clamd_use_jit
+clamav_directory: /mnt/mediashuttle

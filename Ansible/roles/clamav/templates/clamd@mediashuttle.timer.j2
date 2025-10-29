@@ -1,0 +1,11 @@
+[Unit]
+Description=ClamAV scan of {{ clamav_directory }}
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1h
+RandomizedDelaySec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
