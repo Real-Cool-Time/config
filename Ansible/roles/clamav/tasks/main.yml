@@ -19,7 +19,7 @@
   loop: "{{ clamav_selinux_bool }}"
 
 - name: Copy mediashuttle clamav config
-  ansible.builtin.cs_template:
+  ansible.builtin.template:
     src: mediashuttle.conf.j2
     dest: /etc/clam.d/mediashuttle.conf
     owner: root
