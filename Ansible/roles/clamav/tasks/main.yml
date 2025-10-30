@@ -18,7 +18,7 @@
     persistent: true
   loop: "{{ clamav_selinux_bool }}"
 
-- name: Copy mediashuttle clamav config
+- name: Copy clamav config
   ansible.builtin.template:
     src: rct.conf.j2
     dest: /etc/clamd.d/rct.conf
@@ -29,5 +29,27 @@
 - name: Enable clamd
   ansible.builtin.systemd_service:
     name: clamd@rct
+    enabled: true
+    state: started
+
+- name: Copy clamd-mediashuttle scan service
+  ansible.builtin.template:
+    src: clamd-mediashuttle.service.j2
+    dest: /etc/systemd/system/clamd-mediashuttle.service
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Copy clamd-mediashuttle scan timer
+  ansible.builtin.timer:
+    src: clamd-mediashuttle.timer.j2
+    dest: /etc/systemd/system/clamd-mediashuttle.timer
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Enable and start clamd-mediashuttle timer
+  ansible.builtin.systemd_service:
+    name: clamd-mediashuttle.timer
     enabled: true
     state: started

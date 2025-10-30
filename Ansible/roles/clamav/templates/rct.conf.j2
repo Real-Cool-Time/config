@@ -191,7 +191,7 @@ ExcludePath ^/sys/
 
 # Scan files and directories on other filesystems.
 # Default: yes
-CrossFilesystems no
+CrossFilesystems yes
 
 # Perform a database check.
 # Default: 600 (10 min)
@@ -225,7 +225,7 @@ CrossFilesystems no
 User clamscan
 
 # Stop daemon when libclamav reports out of memory condition.
-#ExitOnOOM yes
+ExitOnOOM yes
 
 # Don't fork into background.
 # Default: no
