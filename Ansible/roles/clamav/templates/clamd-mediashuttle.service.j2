@@ -1,0 +1,8 @@
+[Unit]
+Description=ClamAV scan of {{ clamav_directory }}
+Wants=mnt-mediashuttle.mount network-online.target clamd@rct.service
+After=mnt-mediashuttle.mount network-online.target clamd@rct.service
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/clamd {{ clamav_directory }}

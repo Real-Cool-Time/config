@@ -20,14 +20,14 @@
 
 - name: Copy mediashuttle clamav config
   ansible.builtin.template:
-    src: mediashuttle.conf.j2
-    dest: /etc/clamd.d/mediashuttle.conf
+    src: rct.conf.j2
+    dest: /etc/clamd.d/rct.conf
     owner: root
     group: root
     mode: "0644"
 
-- name: Enable mediashuttle clamd
+- name: Enable clamd
   ansible.builtin.systemd_service:
-    name: clamd@mediashuttle
+    name: clamd@rct
     enabled: true
     state: started

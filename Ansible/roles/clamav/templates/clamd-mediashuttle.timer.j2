@@ -2,9 +2,8 @@
 Description=ClamAV scan of {{ clamav_directory }}
 
 [Timer]
-OnCalendar=daily
-AccuracySec=1h
-RandomizedDelaySec=1h
+OnCalendar=OnCalendar=*-*-* 03:00:00 America/Los_Angeles
+RandomizedDelaySec=10m
 Persistent=true
 
 [Install]
