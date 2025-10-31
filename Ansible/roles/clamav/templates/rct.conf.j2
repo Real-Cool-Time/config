@@ -11,7 +11,7 @@ LogFile /var/log/clamd.scan
 # the daemon with --config-file option).
 # This option disables log file locking.
 # Default: no
-LogFileUnlock yes
+LogFileUnlock no
 
 # Maximum size of the log file.
 # Value of 0 disables the limit.
@@ -24,12 +24,12 @@ LogFileMaxSize 100M
 
 # Log time with each message.
 # Default: no
-#LogTime yes
+LogTime yes
 
 # Also log clean files. Useful in debugging but drastically increases the
 # log size.
 # Default: no
-#LogClean yes
+#LogClean no
 
 # Use system logger (can work together with LogFile).
 # Default: no
@@ -42,11 +42,11 @@ LogSyslog yes
 
 # Enable verbose logging.
 # Default: no
-#LogVerbose yes
+LogVerbose yes
 
 # Enable log rotation. Always enabled when LogFileMaxSize is enabled.
 # Default: no
-#LogRotate yes
+LogRotate yes
 
 # Enable Prelude output.
 # Default: no
@@ -58,7 +58,7 @@ LogSyslog yes
 
 # Log additional information about the infected file, such as its
 # size and hash, together with the virus name.
-#ExtendedDetectionInfo yes
+ExtendedDetectionInfo yes
 
 # This option allows you to save a process identifier of the listening
 # daemon.
@@ -70,7 +70,7 @@ LogSyslog yes
 
 # Optional path to the global temporary directory.
 # Default: system specific (usually /tmp or /var/tmp).
-#TemporaryDirectory /var/tmp
+TemporaryDirectory /var/tmp
 
 # Path to the database directory.
 # Default: hardcoded (depends on installation options)
@@ -183,11 +183,11 @@ ExcludePath ^/sys/
 
 # Follow directory symlinks.
 # Default: no
-#FollowDirectorySymlinks yes
+FollowDirectorySymlinks yes
 
 # Follow regular file symlinks.
 # Default: no
-#FollowFileSymlinks yes
+FollowFileSymlinks yes
 
 # Scan files and directories on other filesystems.
 # Default: yes
