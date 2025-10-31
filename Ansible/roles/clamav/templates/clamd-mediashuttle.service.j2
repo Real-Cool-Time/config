@@ -7,4 +7,4 @@ After=mnt-mediashuttle.mount network-online.target clamd@rct.service
 Type=simple
 User=clamscan
 Group=clamscan
-ExecStart=/usr/bin/clamdscan {{ clamav_directory }}
+ExecStart=/usr/bin/clamdscan --config={{ clamav_config }} --multiscan --fdpass {{ clamav_directory }}

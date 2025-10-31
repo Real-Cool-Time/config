@@ -21,19 +21,17 @@
 - name: Copy clamav config
   ansible.builtin.template:
     src: rct.conf.j2
-    dest: /etc/clamd.d/rct.conf
+    dest: "{{ clamav_config }}"
     owner: root
     group: root
     mode: "0644"
   notify: Restart Clamd
-
 
 - name: Enable clamd
   ansible.builtin.systemd_service:
     name: clamd@rct
     enabled: true
     state: started
-  notify: Restart Clamd
 
 - name: Copy clamd-mediashuttle scan service
   ansible.builtin.template:
